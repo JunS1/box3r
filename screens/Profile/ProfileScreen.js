@@ -29,7 +29,7 @@ export default class ProfileScreen extends React.Component {
                 </View>
                 
                 <ScrollView style={styles.content}>
-                    <View style={{flexDirection: "row", alignContent: "center", justifyContent: "center"}}>
+                    <View style={{marginTop: 20, flexDirection: "row", alignContent: "center", justifyContent: "center"}}>
                         <Image source={require("../../assets/box1.png")}/>
                         <Image source={require("../../assets/box2.png")}/>
                     </View>
