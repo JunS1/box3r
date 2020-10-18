@@ -29,7 +29,23 @@ export default class ProfileScreen extends React.Component {
                 </View>
                 
                 <ScrollView style={styles.content}>
-                    <Text>Hi</Text>
+                    <View style={{marginTop: 20, flexDirection: "row", alignContent: "center", justifyContent: "center"}}>
+                        <Image source={require("../../assets/box1.png")}/>
+                        <Image source={require("../../assets/box2.png")}/>
+                    </View>
+                    <View style={{marginTop: 20, flexDirection: "row", justifyContent: "space-around", backgroundColor: "#67C021", alignSelf: "center", width: 300}}>
+                        <Image source={require("../../assets/easy-money.png")} />
+                        <Text style={{alignSelf: "center", color: "#FFFFFF", fontSize: 25, fontWeight: "600"}}>Coupons</Text>
+                        <Text style={{alignSelf: "center", color: "#FFFFFF", fontSize: 25, fontWeight: "600"}}>{">"}</Text>
+                    </View>
+                    <View style={{marginTop: 20, padding: 10, justifyContent: "center", alignItems: "center"}}>
+                        <Text style={{fontWeight: "600", fontSize: 16}}>Goals</Text>
+                        <Image style={{marginTop: 10}} source={require("../../assets/line.png")}/>
+                    </View>
+                    <View style={{marginTop: 20, padding: 10, justifyContent: "center", alignItems: "center"}}>
+                        <Image style={{height: 129, width: 321, shadowOffset:{  width: 10,  height: 10,  }, shadowColor: 'black', shadowOpacity: 1.0,}}source={require("../../assets/goal.png")}/>
+                    </View>
+                    
                 </ScrollView>
                 <Modal
                     isVisible={this.state.settings}
@@ -72,12 +88,12 @@ const styles = StyleSheet.create({
         flex: 1,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#F8F8F8",
         position: 'absolute',
         top: 0,
         marginTop: height * 0.24,
         width: width,
-        height: height
+        height: height,
     },
     header: {
         flexDirection: "row",

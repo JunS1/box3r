@@ -49,7 +49,7 @@ export default class LoginScreen extends React.Component {
     render() {
         return (
             <SafeAreaView style={styles.container} keyboardShouldPersistTaps="never">
-                <Text style={styles.title}>BOX3R</Text>
+                <Image style={{width: 150, height: 100, alignSelf:"center", marginTop: 20}}source={require("../../assets/logo.png")}/>
                 {
                     this.state.errorMessage &&
                     <View style={styles.errorMessage}>
