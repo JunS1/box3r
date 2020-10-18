@@ -16,6 +16,7 @@ export default class ScannerScreen extends React.Component {
         let options = {useGoogleMaps: true}
         let address = await Location.reverseGeocodeAsync(coords, options)
         console.log(address)
+        console.log(coords)
 
     }
 
