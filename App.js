@@ -37,6 +37,10 @@ export default class App extends React.Component {
         this.setState({ loggedIn: true });
     }
 
+    logOut = () => {
+        this.setState({ loggedIn: false });
+    }
+
     render () {
         return (
             this.state.isLoading ? <ActivityIndicator style={{justifySelf: 'center', alignSelf: 'center'}}/> :
@@ -75,7 +79,7 @@ export default class App extends React.Component {
                     > 
                         <Tab.Screen name="Box" component={BoxScreen} />
                         <Tab.Screen name="Scanner" component={ScannerScreen} />
-                        <Tab.Screen name="Profile" component={ProfileScreen} />
+                        <Tab.Screen name="Profile" children={() => <ProfileScreen signOut={this.logOut} />} />
                     </Tab.Navigator>
                 }
             </NavigationContainer>
