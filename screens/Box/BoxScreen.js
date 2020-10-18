@@ -16,7 +16,10 @@ export default class BoxScreen extends React.Component {
                         <View>
                             <Text></Text>
                             <Text style={styles.boxName}>{name}</Text>
-                            <Text >{progress}</Text>
+                            <View style={{flexDirection: "row", marginTop: 5}}>
+                                <Image style={{width: 13, height: 10}} source={require('./Vector.png')} />
+                                <Text>{progress}</Text>
+                            </View>
                         </View>
                     </View>
 
@@ -35,7 +38,8 @@ export default class BoxScreen extends React.Component {
                 {this.renderRow("Bob", "In process...")}
                 <View style={styles.dividerLine}></View>
                 <Text style={styles.labelText}>Past Boxes</Text>
-                {this.renderRow("Greg", "In process...")}
+                {this.renderRow("Greg", "Recycled! (Amazon package)")}
+                {this.renderRow("J-Hope", "Recycled! (Lowe's package)")}
             </ScrollView>
         )
     }
