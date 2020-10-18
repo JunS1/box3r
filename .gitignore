@@ -9,6 +9,7 @@ npm-debug.*
 *.orig.*
 web-build/
 serviceAccountKey.json
+Firebase.js
 
 # macOS
 .DS_Store

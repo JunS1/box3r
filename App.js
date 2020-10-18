@@ -9,17 +9,27 @@ import ScannerScreen from './screens/Scanner/ScannerScreen'
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator 
-        tabBarOptions={{
-          tabStyle: {justifyContent: 'center', alignItems: 'center'}
-        }}>
-        <Tab.Screen name="Box" component={BoxScreen} />
-        <Tab.Screen name="Scanner" component={ScannerScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+export default class App extends React.Component {
+    state = {
+        loggedIn: false
+    }
+
+    componentDidMount() {
+
+    }
+
+    render () {
+        return (
+            <NavigationContainer>
+                <Tab.Navigator 
+                  tabBarOptions={{
+                    tabStyle: {justifyContent: 'center', alignItems: 'center'}
+                }}> 
+                    <Tab.Screen name="Box" component={BoxScreen} />
+                    <Tab.Screen name="Scanner" component={ScannerScreen} />
+                    <Tab.Screen name="Profile" component={ProfileScreen} />
+                </Tab.Navigator>
+            </NavigationContainer>
+        );
+    }
 }
