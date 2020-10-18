@@ -40,13 +40,16 @@ export default class App extends React.Component {
                 {!this.state.loggedIn ? 
                     <LoginScreen logIn={this.logIn} /> 
                 :
-                    <Tab.Navigator> 
+                    <Tab.Navigator 
+                        tabBarOptions={{
+                            tabStyle: {justifyContent: 'center', alignItems: 'center'}
+                        }}
+                    > 
                         <Tab.Screen name="Box" component={BoxScreen} />
                         <Tab.Screen name="Scanner" component={ScannerScreen} />
                         <Tab.Screen name="Profile" component={ProfileScreen} />
                     </Tab.Navigator>
                 }
-                
             </NavigationContainer>
         );
     }
