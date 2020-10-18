@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import firebase from "./Firebase"
@@ -13,21 +13,20 @@ const Tab = createBottomTabNavigator();
 
 export default class App extends React.Component {
     state = {
-        loggedIn: false
+        loggedIn: false,
+        isLoading: true,
     }
 
     componentDidMount() {
-        if (firebase.auth().currentUser) {
-            this.setState({ loggedIn: true });
-        } else {
-            firebase.auth().onAuthStateChanged(async (user) => {
-                if (user) {
-                    this.setState({
-                        loggedIn: true
-                    })
-                }
-            }) 
-        }
+        firebase.auth().onAuthStateChanged(async (user) => {
+            if (user) {
+                this.setState({
+                    loggedIn: true,
+                    isLoading: false
+                });
+            }
+        })
+        setTimeout(() => this.setState({ isLoading: false }), 1000);
     }
 
     logIn = () => {
@@ -36,6 +35,7 @@ export default class App extends React.Component {
 
     render () {
         return (
+            this.state.isLoading ? <ActivityIndicator style={{justifySelf: 'center', alignSelf: 'center'}}/> :
             <NavigationContainer>
                 {!this.state.loggedIn ? 
                     <LoginScreen logIn={this.logIn} /> 
