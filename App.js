@@ -12,7 +12,10 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator 
+        tabBarOptions={{
+          tabStyle: {justifyContent: 'center', alignItems: 'center'}
+        }}>
         <Tab.Screen name="Box" component={BoxScreen} />
         <Tab.Screen name="Scanner" component={ScannerScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
