@@ -18,7 +18,7 @@ function getRandomInRange(from, to, fixed) {
 }
 
 function randomLoc() {
-    return {latitude: getRandomInRange(-90, 90, 3), longitude: getRandomInRange(-180, 180, 3)}
+    return {latitude: getRandomInRange(19, 64, 3), longitude: getRandomInRange(-161, -68, 3)}
 }
 
 // timestamp
