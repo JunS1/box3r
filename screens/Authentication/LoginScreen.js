@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    ScrollView, 
+    SafeAreaView, 
     Image,
     View, 
     Text, 
@@ -26,20 +26,37 @@ export default class LoginScreen extends React.Component {
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password).then(() => {
-                // navigate to tab navigation
+                // navigate to tab navigation--using callback to set state
+                this.props.logIn();
             })
             .catch(error => {
-                this.setState({errorMessage: error.message})
+                if (error.code !== "auth/user-not-found") {
+                    this.setState({errorMessage: error.message});
+                } else {  // new user--add them to database
+                    firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(this.state.email.trim(), this.state.password)
+                    .then(() => {
+                        this.props.logIn();
+                    })
+                    .catch(error => {
+                        this.setState({errorMessage: error.message})
+                    })
+                }
             })
     }
 
     render() {
         return (
-            <ScrollView style={styles.container} keyboardShouldPersistTaps="never">
-
-                <View style={styles.errorMessage}>
-                    {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
-                </View>
+            <SafeAreaView style={styles.container} keyboardShouldPersistTaps="never">
+                <Text style={styles.title}>BOX3R</Text>
+                {
+                    this.state.errorMessage &&
+                    <View style={styles.errorMessage}>
+                        <Text style={styles.error}>{this.state.errorMessage}</Text>
+                    </View>
+                }
+                
 
                 <View style={styles.form}>
                     <View>
@@ -63,12 +80,10 @@ export default class LoginScreen extends React.Component {
                         ></TextInput>
                     </View>
                 </View>
-
-
                 <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                    <Text style={{ color: "#FFF", fontWeight: "bold", fontSize: 20}}>Login</Text>
+                    <Text style={{ color: "#FFF", fontWeight: "bold", fontSize: 20}}>Login/Register</Text>
                 </TouchableOpacity>
-            </ScrollView>
+            </SafeAreaView>
         )
              
     }
@@ -116,10 +131,15 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: "#0BB68C",
+        backgroundColor: "#67C021",
         borderRadius: 30,
         height: 52,
         alignItems: "center",
         justifyContent: "center"
+    },
+    title: {
+        fontWeight: "bold",
+        alignSelf: "center",
+        fontSize: 32,
     }
 })
