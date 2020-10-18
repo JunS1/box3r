@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import firebase from "./Firebase"
@@ -10,6 +10,10 @@ import ScannerScreen from './screens/Scanner/ScannerScreen'
 import LoginScreen from './screens/Authentication/LoginScreen';
 
 const Tab = createBottomTabNavigator();
+
+const tabActiveColor = '#67C021';
+const tabInactiveColor = '#B1B1B1';
+
 
 export default class App extends React.Component {
     state = {
@@ -42,8 +46,32 @@ export default class App extends React.Component {
                 :
                     <Tab.Navigator 
                         tabBarOptions={{
-                            tabStyle: {justifyContent: 'center', alignItems: 'center'}
+                            tabStyle: {justifyContent: 'center', alignItems: 'center'},
+                            showLabel: false
                         }}
+                        screenOptions={({ route }) => ({
+                            tabBarIcon: ({ focused, color, size }) => {
+                                let tabIcon;
+                                if (route.name === "Box") {
+                                    tabIcon = require('./assets/box.png');
+                                } else if (route.name === "Scanner") {
+                                    tabIcon = require('./assets/scanner.png');
+                                } else if (route.name === "Profile") {
+                                    tabIcon = require('./assets/profile.png');
+                                }
+                                return (
+                                    <Image
+                                        source={tabIcon}
+                                        resizeMode='contain'
+                                        style={{
+                                            height: 30,
+                                            width: 30,
+                                            tintColor: focused ? tabActiveColor : tabInactiveColor
+                                        }}
+                                    />
+                                )
+                            }
+                        })}
                     > 
                         <Tab.Screen name="Box" component={BoxScreen} />
                         <Tab.Screen name="Scanner" component={ScannerScreen} />
