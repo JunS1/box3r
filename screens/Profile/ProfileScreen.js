@@ -23,8 +23,8 @@ export default class ProfileScreen extends React.Component {
                 <View style={styles.header}>
                     <Image style={{right: width / 2 * 0.7}}source={require("../../assets/picture.png")} />
                     <Text style={styles.name}>Kimmy Lee</Text>
-                    <TouchableOpacity onPress={this.toggleSettings}>
-                        <Image style={{position: "absolute", top: -height * 0.05, left: width * 0.25}}source={require("../../assets/settings.png")}/>
+                    <TouchableOpacity style={{position: "absolute", top: -height * 0.05, left: width * 0.44}} onPress={this.toggleSettings} hitSlop={{top: 50, bottom: 50, left: 50, right: 50}}>
+                        <Image  source={require("../../assets/settings.png")}/>
                     </TouchableOpacity>
                 </View>
                 
